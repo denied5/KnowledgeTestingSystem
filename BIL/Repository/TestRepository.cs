@@ -18,9 +18,9 @@ namespace BIL.Repository
             db = context;
         }
 
-        public IQueryable<Test> GetAll()
+        public ICollection<Test> GetAll()
         {
-            return db.Tests;
+            return db.Tests.ToList();
         }
 
         public Test Get(int id)
@@ -43,11 +43,6 @@ namespace BIL.Repository
             Test test = db.Tests.Find(id);
             if (test != null)
                 db.Tests.Remove(test);
-        }
-
-        public IQueryable<Test> GetAllIncluding()
-        {
-            return db.Tests.Include("Questions");
         }
     }
 }

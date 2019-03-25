@@ -18,9 +18,9 @@ namespace BIL.Repository
             db = context;
         }
 
-        public IQueryable<Answer> GetAll()
+        public ICollection<Answer> GetAll()
         {
-            return db.Answers;
+            return db.Answers.ToList();
         }
 
         public Answer Get(int id)
@@ -43,11 +43,6 @@ namespace BIL.Repository
             Answer answer = db.Answers.Find(id);
             if (answer != null)
                 db.Answers.Remove(answer);
-        }
-
-        public IQueryable<Answer> GetAllIncluding()
-        {
-            return db.Answers.Include("Question");
         }
     }
 }

@@ -9,8 +9,7 @@ namespace BIL.Interfaces
 {
     public interface ITestRepository
     {
-        IQueryable<Test> GetAllIncluding();
-        IQueryable<Test> GetAll();
+        ICollection<Test> GetAll();
         Test Get(int id);
         void Create(Test Test);
         void Update(Test Test);

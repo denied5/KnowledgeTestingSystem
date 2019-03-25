@@ -9,8 +9,7 @@ namespace BIL.Interfaces
 {
     public interface IAnswerRepository
     {
-        IQueryable<Answer> GetAllIncluding();
-        IQueryable<Answer> GetAll();
+        ICollection<Answer> GetAll();
         Answer Get(int id);
         void Create(Answer Answer);
         void Update(Answer Answer);
