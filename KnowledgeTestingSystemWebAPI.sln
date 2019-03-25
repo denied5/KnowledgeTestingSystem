@@ -7,9 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnowledgeTestingSystemWebAP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnowledgeTestingSystemWebAPI.Tests", "KnowledgeTestingSystemWebAPI.Tests\KnowledgeTestingSystemWebAPI.Tests.csproj", "{66374823-F7A9-46F0-8C2C-52C1EC0F9734}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BIL", "BIL\BIL.csproj", "{CA148E04-E3BB-4F42-918E-18E70665A56E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL EF", "BIL\DAL EF.csproj", "{CA148E04-E3BB-4F42-918E-18E70665A56E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL EF", "DAL EF\DAL EF.csproj", "{C6A5F1D3-B2E7-4952-8B92-299C99ED1AEA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BIL", "DAL EF\BIL.csproj", "{C6A5F1D3-B2E7-4952-8B92-299C99ED1AEA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

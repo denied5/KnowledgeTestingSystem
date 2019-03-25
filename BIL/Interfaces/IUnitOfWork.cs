@@ -2,9 +2,9 @@
 {
     internal interface IUnitOfWork
     {
-        IAnswerRepository Product { get;}
-        IQuestionRepository Category { get;}
-        ITestRepository Provider { get;}
+        IAnswerRepository Answer { get;}
+        IQuestionRepository Question { get;}
+        ITestRepository Test { get;}
         void Save();
         void Dispose(bool disposing);
         void Dispose();

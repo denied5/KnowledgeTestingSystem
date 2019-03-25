@@ -15,6 +15,6 @@ namespace BIL.Entitys
         public string Name { get; set; }
         public int SecToFinish { get; set; }
         public DateTime TimeOfCreation { get; set; }
-        public virtual IQueryable<Question> Questions { get; set; }
+        public virtual IQueryable <Question> Questions { get; set; }
     }
 }

@@ -10,13 +10,11 @@ namespace BIL.Entitys
     public class Answer
     {
         [Key]
-        int AnswerId { get; set; }
-
+        public int AnswerId { get; set; }
         public bool IsItWright { get; set; }
         [MaxLength(90)]
         public string  AnswerText { get; set; }
-
         public int QuestionId { get; set; }
-        public virtual Question Question { get; set; }
+        public Question Question { get; set; }
     }
 }

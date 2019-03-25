@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BIL.Interfaces
 {
-    interface IContext
+    public interface IContext
     {
        DbSet<Answer> Answers { get; set; }
        DbSet<Question> Questions { get; set; }
