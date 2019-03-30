@@ -1,4 +1,8 @@
-﻿using System;
+﻿using DAL_EF.Infrastructure;
+using Ninject;
+using Ninject.Modules;
+using Ninject.Web.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;

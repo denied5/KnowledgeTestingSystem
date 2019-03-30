@@ -10,37 +10,49 @@ namespace BIL.UnitOfWorks
 {
     public class UnitOfWork: IUnitOfWork, IDisposable
     {
-        private IContext db;
-        private IAnswerRepository _answerRepository;
-        private IQuestionRepository _questionRepository;
-        private ITestRepository _testRepository;
+        private DBContext db;
+        private AnswerRepository _answerRepository;
+        private QuestionRepository _questionRepository;
+        private TestRepository _testRepository;
 
-        public UnitOfWork(/*IContext context, IAnswerRepository answerRepository, IQuestionRepository questionRepository,
-             ITestRepository testRepository */)
+        public UnitOfWork(string connectionString)
         {
-            //db = context;
-            //_answerRepository = answerRepository;
-            //_questionRepository =  questionRepository;
-            //_testRepository = testRepository;
-
-            db = new DBContext();
-            _answerRepository = new AnswerRepository(db);
-            _questionRepository = new QuestionRepository(db);
-            _testRepository = new TestRepository(db);
+            db = new DBContext(connectionString);
         }
 
-        public IAnswerRepository Answer { get => _answerRepository; private set => _answerRepository = value; }
-        public IQuestionRepository Question { get => _questionRepository; private set => _questionRepository = value; }
-        public ITestRepository Test { get => _testRepository; private set => _testRepository = value; }
+        public IAnswerRepository Answer {
+            get
+            {
+                if (_answerRepository == null)
+                    _answerRepository = new AnswerRepository(db);
+                return _answerRepository;
+            }
+        }
+        public IQuestionRepository Question
+        {
+            get
+            {
+                if (_questionRepository == null)
+                    _questionRepository = new QuestionRepository(db);
+                return _questionRepository;
+            }
+        }
+        public ITestRepository Test
+        {
+            get
+            {
+                if (_testRepository == null)
+                    _testRepository = new TestRepository(db);
+                return _testRepository;
+            }
+        }
 
         public void Save()
         {
-            ((DBContext)db).SaveChanges();
+            db.SaveChanges();
         }
 
         private bool disposed = false;
-
-        
 
         public virtual void Dispose(bool disposing)
         {
@@ -48,7 +60,7 @@ namespace BIL.UnitOfWorks
             {
                 if (disposing)
                 {
-                    ((DBContext)db).Dispose();
+                    db.Dispose();
                 }
                 disposed = true;
             }
@@ -57,7 +69,6 @@ namespace BIL.UnitOfWorks
         public void Dispose()
         {
             Dispose(true);
-            GC.SuppressFinalize(this);
         }
     }
 }

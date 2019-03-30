@@ -1,6 +1,6 @@
 ﻿namespace BIL.Interfaces
 {
-    internal interface IUnitOfWork
+    public interface IUnitOfWork
     {
         IAnswerRepository Answer { get;}
         IQuestionRepository Question { get;}

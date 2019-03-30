@@ -13,7 +13,7 @@ namespace BIL
         static void Main(string[] args)
         {
 
-            UnitOfWork f = new UnitOfWork();
+            //UnitOfWork f = new UnitOfWork();
 
             //var q = new Question() { QuestionText = "2+2"};
 
@@ -34,8 +34,8 @@ namespace BIL
             //List<Question> ka = f.Question.GetAll().ToList();
             //List<Question> la = f.Question.GetAllIncluding().ToList();
 
-            List<Test> kd = f.Test.GetAll().ToList();
-            var kl = kd[0].Questions;
+            //List<Test> kd = f.Test.GetAll().ToList();
+            //var kl = kd[0].Questions;
             
         }
     }

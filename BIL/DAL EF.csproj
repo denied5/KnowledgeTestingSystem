@@ -64,10 +64,10 @@
     <Compile Include="Entitys\Answer.cs" />
     <Compile Include="Entitys\Question.cs" />
     <Compile Include="Entitys\Test.cs" />
-    <Compile Include="Interfaces\IAnswerRepository.cs" />
+    <Compile Include="Interfaces\IRepository\IAnswerRepository.cs" />
     <Compile Include="Interfaces\IContext.cs" />
-    <Compile Include="Interfaces\IQuestionRepository.cs" />
-    <Compile Include="Interfaces\ITestRepository.cs" />
+    <Compile Include="Interfaces\IRepository\IQuestionRepository.cs" />
+    <Compile Include="Interfaces\IRepository\ITestRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Migrations\201903242055322_init.cs" />
     <Compile Include="Migrations\201903242055322_init.Designer.cs">

@@ -8,8 +8,8 @@ namespace BIL
 
     public class DBContext : DbContext, IContext
     {
-        public DBContext()
-            : base("DbConnection")
+        public DBContext(string connectionString)
+            : base(connectionString)
         {
         }
 
