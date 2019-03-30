@@ -21,6 +21,7 @@ namespace KnowledgeTestingSystemWebAPI.Controllers
         }
 
         // GET: api/Test
+        [HttpGet]
         public IEnumerable<TestVM> Get()
         {
             IEnumerable<TestDTO> testDTOs = _testService.GetTests();
