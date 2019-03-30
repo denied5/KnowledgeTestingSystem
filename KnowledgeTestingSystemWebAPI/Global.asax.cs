@@ -1,4 +1,5 @@
 ﻿using DAL_EF.Infrastructure;
+using KnowledgeTestingSystemWebAPI.AutoMapper;
 using Ninject;
 using Ninject.Modules;
 using Ninject.Web.Mvc;
@@ -22,6 +23,7 @@ namespace KnowledgeTestingSystemWebAPI
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            AutoMapperConfiguration.Configure();
         }
     }
 }

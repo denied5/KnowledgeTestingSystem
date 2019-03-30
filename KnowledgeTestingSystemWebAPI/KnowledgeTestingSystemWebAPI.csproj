@@ -189,6 +189,8 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="AutoMapper\AutoMapperConfiguration.cs" />
     <Compile Include="Controllers\AnswerController.cs" />
+    <Compile Include="ViewModels\QuestionVM.cs" />
+    <Compile Include="ViewModels\TestVM.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

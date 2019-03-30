@@ -3,39 +3,37 @@
 
 namespace KnowledgeTestingSystemWebAPI.App_Start
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Web;
-    using System.Web.Http;
     using DAL_EF.Infrastructure;
     using DAL_EF.Interfaces;
     using DAL_EF.Services;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
     using Ninject;
     using Ninject.Modules;
     using Ninject.Web.Common;
     using Ninject.Web.Common.WebHost;
     using Ninject.Web.WebApi;
+    using System;
+    using System.Collections.Generic;
+    using System.Web;
+    using System.Web.Http;
 
 
 
 
-    public static class NinjectWebCommon 
+    public static class NinjectWebCommon
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
         /// <summary>
         /// Starts the application
         /// </summary>
-        public static void Start() 
+        public static void Start()
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
             bootstrapper.Initialize(CreateKernel);
         }
-        
+
         /// <summary>
         /// Stops the application.
         /// </summary>
@@ -43,7 +41,7 @@ namespace KnowledgeTestingSystemWebAPI.App_Start
         {
             bootstrapper.ShutDown();
         }
-        
+
         /// <summary>
         /// Creates the kernel that will manage your application.
         /// </summary>
@@ -77,7 +75,7 @@ namespace KnowledgeTestingSystemWebAPI.App_Start
             NinjectModule serviceModule = new ServiceModule("DefaultConnection");
             collection.Add(serviceModule);
             kernel.Load(collection);
-        }        
+        }
 
 
     }

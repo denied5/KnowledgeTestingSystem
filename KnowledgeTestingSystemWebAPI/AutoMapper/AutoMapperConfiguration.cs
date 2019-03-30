@@ -15,6 +15,8 @@ namespace KnowledgeTestingSystemWebAPI.AutoMapper
             Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<AnswerVM, AnswerDTO>();
+                cfg.CreateMap<TestVM, TestDTO>();
+                cfg.CreateMap<QuestionVM, QuestionDTO>();
             });
         }
     }
