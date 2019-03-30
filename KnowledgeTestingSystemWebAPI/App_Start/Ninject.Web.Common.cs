@@ -71,6 +71,8 @@ namespace KnowledgeTestingSystemWebAPI.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IAnswerService>().To<AnswerService>();
+            kernel.Bind<IQuestionService>().To<QuestionService>();
+            kernel.Bind<ITestService>().To<TestService>();
             List<INinjectModule> collection = new List<INinjectModule>();
             NinjectModule serviceModule = new ServiceModule("DefaultConnection");
             collection.Add(serviceModule);
