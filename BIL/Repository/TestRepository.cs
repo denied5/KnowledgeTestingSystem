@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BIL.Repository
 {
-    class TestRepository: ITestRepository
+    public class TestRepository: ITestRepository
     {
         private IContext db;
 

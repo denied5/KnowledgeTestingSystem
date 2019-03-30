@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BIL.Repository
 {
-    class QuestionRepository: IQuestionRepository
+    public class QuestionRepository: IQuestionRepository
     {
         private IContext db;
 

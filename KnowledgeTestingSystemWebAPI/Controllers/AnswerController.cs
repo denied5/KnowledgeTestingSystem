@@ -52,11 +52,3 @@ namespace KnowledgeTestingSystemWebAPI.Controllers
         }
     }
 }
-
-public class WelcomeMessageServiceModule : NinjectModule
-{
-    public override void Load()
-    {
-        this.Bind<IAnswerService>().To<AnswerService>();
-    }
-}

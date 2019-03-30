@@ -22,5 +22,6 @@ namespace DAL_EF.Infrastructure
         {
             Bind<IUnitOfWork>().To<UnitOfWork>().WithConstructorArgument(connectionString);
         }
+
     }
 }

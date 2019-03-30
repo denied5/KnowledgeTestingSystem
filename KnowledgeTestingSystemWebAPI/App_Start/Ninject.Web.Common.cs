@@ -4,13 +4,17 @@
 namespace KnowledgeTestingSystemWebAPI.App_Start
 {
     using System;
+    using System.Collections;
+    using System.Collections.Generic;
     using System.Web;
     using System.Web.Http;
+    using DAL_EF.Infrastructure;
     using DAL_EF.Interfaces;
     using DAL_EF.Services;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
     using Ninject;
+    using Ninject.Modules;
     using Ninject.Web.Common;
     using Ninject.Web.Common.WebHost;
     using Ninject.Web.WebApi;
@@ -69,6 +73,10 @@ namespace KnowledgeTestingSystemWebAPI.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IAnswerService>().To<AnswerService>();
+            List<INinjectModule> collection = new List<INinjectModule>();
+            NinjectModule serviceModule = new ServiceModule("DefaultConnection");
+            collection.Add(serviceModule);
+            kernel.Load(collection);
         }        
 
 
