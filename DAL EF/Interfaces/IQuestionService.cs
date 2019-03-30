@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL_EF.Interfaces
 {
-    interface IQuestionService: IDisposable
+    public interface IQuestionService: IDisposable
     {
         void AddQuestion(QuestionDTO questionDTO);
         QuestionDTO GetQuestion(int? id);

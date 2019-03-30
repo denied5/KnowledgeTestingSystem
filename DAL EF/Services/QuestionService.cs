@@ -8,10 +8,10 @@ using System.Collections.Generic;
 
 namespace DAL_EF.Services
 {
-    class QuestionService : IQuestionService
+    public class QuestionService : IQuestionService
     {
 
-        IUnitOfWork _unitOfWork { get; set; }
+        private IUnitOfWork _unitOfWork { get; set; }
 
         public QuestionService(IUnitOfWork unitOfWork)
         {

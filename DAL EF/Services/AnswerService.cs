@@ -14,7 +14,7 @@ namespace DAL_EF.Services
 {
     public class AnswerService : IAnswerService
     {
-        IUnitOfWork _unitOfWork { get; set; }
+        private IUnitOfWork _unitOfWork { get; set; }
 
         public AnswerService(IUnitOfWork unitOfWork)
         {

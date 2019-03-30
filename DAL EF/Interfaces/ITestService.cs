@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL_EF.Interfaces
 {
-    interface ITestService: IDisposable
+    public interface ITestService: IDisposable
     {
         void AddTest(TestDTO testDTO);
         TestDTO GetTest(int? id);

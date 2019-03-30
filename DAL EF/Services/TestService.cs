@@ -8,7 +8,7 @@ using DAL_EF.Interfaces;
 
 namespace DAL_EF.Services
 {
-    class TestService : ITestService
+    public class TestService : ITestService
     {
         IUnitOfWork _unitOfWork { get; set; }
 
