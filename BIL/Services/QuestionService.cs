@@ -1,12 +1,11 @@
 ﻿using AutoMapper;
 using BIL.Entitys;
 using BIL.Interfaces;
-using DAL_EF.DTO;
-using DAL_EF.Infrastructure;
-using DAL_EF.Interfaces;
+using BIL.DTO;
+using BIL.Infrastructure;
 using System.Collections.Generic;
 
-namespace DAL_EF.Services
+namespace BIL.Services
 {
     public class QuestionService : IQuestionService
     {
@@ -25,6 +24,7 @@ namespace DAL_EF.Services
                 throw new BILException("question null", "");
 
             _unitOfWork.Question.Create(Mapper.Map<Question>(questionDTO));
+            _unitOfWork.Save();
         }
 
         public void DeleteQuestion(int? id)
@@ -32,7 +32,10 @@ namespace DAL_EF.Services
             if (id == null)
                 throw new BILException("we don't have this id", "");
             else
+            {
                 _unitOfWork.Question.Delete(id.GetValueOrDefault());
+                _unitOfWork.Save();
+            }
         }
 
         public void Dispose()
@@ -48,9 +51,9 @@ namespace DAL_EF.Services
             return Mapper.Map<QuestionDTO>(_unitOfWork.Question.Get(id.GetValueOrDefault()));
         }
 
-        public IEnumerable<QuestionDTO> GetQuestions()
+        public ICollection<QuestionDTO> GetQuestions()
         {
-            return Mapper.Map<IEnumerable<QuestionDTO>>(_unitOfWork.Question.GetAll());
+            return Mapper.Map<ICollection<QuestionDTO>>(_unitOfWork.Question.GetAll());
         }
     }
 }

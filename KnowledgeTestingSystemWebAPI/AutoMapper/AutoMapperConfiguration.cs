@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using DAL_EF.DTO;
+using BIL.DTO;
 using KnowledgeTestingSystemWebAPI.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -14,8 +14,10 @@ namespace KnowledgeTestingSystemWebAPI.AutoMapper
         {
             Mapper.Initialize(cfg =>
             {
+                cfg.CreateMap<AnswerDTO, AnswerVM>();
                 cfg.CreateMap<AnswerVM, AnswerDTO>();
                 cfg.CreateMap<TestVM, TestDTO>();
+                cfg.CreateMap<TestDTO,TestVM > ();
                 cfg.CreateMap<QuestionVM, QuestionDTO>();
             });
         }

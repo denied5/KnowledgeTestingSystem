@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using DAL_EF.DTO;
-using DAL_EF.Interfaces;
-using DAL_EF.Services;
+using BIL.DTO;
+using BIL.Infrastructure;
+using BIL.Interfaces;
 using KnowledgeTestingSystemWebAPI.ViewModels;
 using Ninject.Modules;
 using System;
@@ -22,33 +22,85 @@ namespace KnowledgeTestingSystemWebAPI.Controllers
             _answerService = answerService;
         }
 
-        // GET: api/Answer
         [HttpGet]
-        public IEnumerable<AnswerVM> Get()
+        [Route("api/Answer")]
+        public IHttpActionResult Get()
         {
             IEnumerable<AnswerDTO> answerDTOs = _answerService.GetAnswers();
-            return Mapper.Map<IEnumerable<AnswerVM>>(answerDTOs);
+            return Ok(Mapper.Map<IEnumerable<AnswerVM>>(answerDTOs));
         }
 
-        // GET: api/Answer/5
-        public string Get(int id)
+        [HttpGet]
+        [Route("api/Answer/{id}")]
+        public IHttpActionResult Get(int id)
         {
-            return "value";
+            if (id < 0)
+            {
+                return NotFound();
+            }
+
+            AnswerDTO answerDTO;
+            try
+            {
+                answerDTO = _answerService.GetAnswer(id);
+            }
+            catch (BILException myExc)
+            {
+
+                return InternalServerError(myExc);
+            }
+            if (answerDTO == null)
+            {
+                return NotFound();
+            }
+            
+            return Ok(answerDTO);
         }
 
-        // POST: api/Answer
-        public void Post([FromBody]string value)
+        [HttpPost]
+        [Route("api/Answer")]
+        public IHttpActionResult Post([FromBody]AnswerDTO answerDTO)
         {
+            if (answerDTO == null)
+            {
+                return BadRequest();
+            }
+
+            _answerService.AddAnswer(answerDTO);
+            return Ok();
         }
 
-        // PUT: api/Answer/5
-        public void Put(int id, [FromBody]string value)
+        [HttpPost]
+        [Route("api/Answer/{id}")]
+        public IHttpActionResult Put(int id, [FromBody]AnswerDTO answerDTO)
         {
+            if (id == null || answerDTO == null )
+            {
+                return BadRequest();
+            }
+            try
+            {
+                _answerService.Change(id, answerDTO);
+            }
+            catch (BILException myExc)
+            {
+                return InternalServerError(myExc);
+            }
+            return Ok();
         }
 
         // DELETE: api/Answer/5
-        public void Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
+            try
+            {
+                _answerService.DeleteAnswer(id);
+            }
+            catch (BILException myExc)
+            {
+                return InternalServerError(myExc);
+            }
+            return Ok();
         }
     }
 }

@@ -1,16 +1,15 @@
 ﻿using AutoMapper;
 using BIL.Entitys;
 using BIL.Interfaces;
-using DAL_EF.DTO;
-using DAL_EF.Infrastructure;
-using DAL_EF.Interfaces;
+using BIL.DTO;
+using BIL.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL_EF.Services
+namespace BIL.Services
 {
     public class AnswerService : IAnswerService
     {
@@ -27,7 +26,15 @@ namespace DAL_EF.Services
             if (answerDTO == null)
                 throw new BILException("answer null", "");
 
-            _unitOfWork.Answer.Create( Mapper.Map<Answer>(answerDTO));
+            Answer answer = new Answer
+            {
+                AnswerText = answerDTO.AnswerText,
+                IsItWright = answerDTO.IsItWright,
+                QuestionId = answerDTO.QuestionId
+            };
+
+            _unitOfWork.Answer.Create(answer);
+            _unitOfWork.Save();
         }
 
         public void DeleteAnswer(int? id)
@@ -35,7 +42,10 @@ namespace DAL_EF.Services
             if (id == null)
                 throw new BILException("we don't have this id", "");
             else
+            {
                 _unitOfWork.Answer.Delete(id.GetValueOrDefault());
+                _unitOfWork.Save();
+            }
         }
 
         public void Dispose()
@@ -51,9 +61,21 @@ namespace DAL_EF.Services
             return Mapper.Map<AnswerDTO>(_unitOfWork.Answer.Get(id.GetValueOrDefault()));
         }
 
-        public IEnumerable<AnswerDTO> GetAnswers()
+        public ICollection<AnswerDTO> GetAnswers()
         {
-            return Mapper.Map<IEnumerable<AnswerDTO>>(_unitOfWork.Answer.GetAll());
+            return Mapper.Map<ICollection<AnswerDTO>>(_unitOfWork.Answer.GetAll());
+        }
+
+        public void Change(int id, AnswerDTO answerDTO)
+        {
+            Answer answer = _unitOfWork.Answer.Get(id);
+            if (answer == null)
+                throw new BILException("we don't have this id", "");
+
+            answer.AnswerText = answerDTO.AnswerText;
+            answer.IsItWright = answerDTO.IsItWright;
+            answer.QuestionId = answer.QuestionId;
+            _unitOfWork.Save();
         }
     }
 }

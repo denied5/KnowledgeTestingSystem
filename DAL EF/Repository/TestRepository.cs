@@ -44,5 +44,10 @@ namespace BIL.Repository
             if (test != null)
                 db.Tests.Remove(test);
         }
+
+        public Test GetWithConnection(int id)
+        {
+            return db.Tests.Include(c => c.Questions.Select(o => o.Answers)).First(t => t.TestId == id);
+        }
     }
 }

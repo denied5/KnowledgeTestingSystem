@@ -1,4 +1,4 @@
-﻿using DAL_EF.Infrastructure;
+﻿using BIL.Infrastructure;
 using KnowledgeTestingSystemWebAPI.AutoMapper;
 using Ninject;
 using Ninject.Modules;

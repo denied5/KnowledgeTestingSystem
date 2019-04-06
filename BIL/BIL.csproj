@@ -7,7 +7,7 @@
     <ProjectGuid>{C6A5F1D3-B2E7-4952-8B92-299C99ED1AEA}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>DAL_EF</RootNamespace>
-    <AssemblyName>DAL EF</AssemblyName>
+    <AssemblyName>BIL</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoMapper\AutoMapperConfigHelper.cs" />
     <Compile Include="BusinessModels\Statistics.cs" />
     <Compile Include="DTO\AnswerDTO.cs" />
     <Compile Include="DTO\QuestionDTO.cs" />
@@ -69,6 +70,12 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAL EF\DAL EF.csproj">
+      <Project>{ca148e04-e3bb-4f42-918e-18e70665a56e}</Project>
+      <Name>DAL EF</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -256,7 +256,7 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DAL EF\BIL.csproj">
+    <ProjectReference Include="..\BIL\BIL.csproj">
       <Project>{c6a5f1d3-b2e7-4952-8b92-299c99ed1aea}</Project>
       <Name>BIL</Name>
     </ProjectReference>

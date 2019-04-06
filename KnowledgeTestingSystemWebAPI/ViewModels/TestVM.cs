@@ -10,5 +10,6 @@ namespace KnowledgeTestingSystemWebAPI.ViewModels
         public int TestId { get; set; }
         public string Name { get; set; }
         public int SecToFinish { get; set; }
+        public virtual ICollection<QuestionVM> Questions { get; set; }
     }
 }

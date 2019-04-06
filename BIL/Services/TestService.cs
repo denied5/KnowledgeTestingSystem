@@ -2,11 +2,10 @@
 using AutoMapper;
 using BIL.Entitys;
 using BIL.Interfaces;
-using DAL_EF.DTO;
-using DAL_EF.Infrastructure;
-using DAL_EF.Interfaces;
+using BIL.DTO;
+using BIL.Infrastructure;
 
-namespace DAL_EF.Services
+namespace BIL.Services
 {
     public class TestService : ITestService
     {
@@ -24,6 +23,7 @@ namespace DAL_EF.Services
                 throw new BILException("test null", "");
 
             _unitOfWork.Test.Create(Mapper.Map<Test>(testDTO));
+            _unitOfWork.Save();
         }
 
         public void DeleteTest(int? id)
@@ -31,7 +31,10 @@ namespace DAL_EF.Services
             if (id == null)
                 throw new BILException("we don't have this id", "");
             else
+            {
                 _unitOfWork.Test.Delete(id.GetValueOrDefault());
+                _unitOfWork.Save();
+            }
         }
 
         public void Dispose()
@@ -47,9 +50,14 @@ namespace DAL_EF.Services
             return Mapper.Map<TestDTO>(_unitOfWork.Test.Get(id.GetValueOrDefault()));
         }
 
-        public IEnumerable<TestDTO> GetTests()
+        public ICollection<TestDTO> GetTests()
         {
-            return Mapper.Map<IEnumerable<TestDTO>>(_unitOfWork.Test.GetAll());
+            return Mapper.Map<ICollection<TestDTO>>(_unitOfWork.Test.GetAll());
+        }
+
+        public TestDTO GetTestWithConnection(int? id)
+        {
+            return Mapper.Map<TestDTO>(_unitOfWork.Test.GetWithConnection(id.GetValueOrDefault()));
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using DAL_EF.DTO;
-using DAL_EF.Interfaces;
+using BIL.Interfaces;
+using BIL.DTO;
 using KnowledgeTestingSystemWebAPI.ViewModels;
 using System;
 using System.Collections.Generic;

@@ -28,6 +28,16 @@ namespace BIL.Repository
             return db.Answers.Find(id);
         }
 
+        public ICollection<Answer> GetAllWithConnection()
+        {
+            return db.Answers.Include("Question").ToList();
+        }
+
+        public Answer GetWithConnection(int id)
+        {
+            return db.Answers.Include("Question").First(ex => ex.AnswerId == id);
+        }
+
         public void Create(Answer Answer)
         {
             db.Answers.Add(Answer);

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using DAL_EF.DTO;
-using DAL_EF.Interfaces;
+using BIL.Interfaces;
+using BIL.DTO;
 using KnowledgeTestingSystemWebAPI.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using BIL.Infrastructure;
 
 namespace KnowledgeTestingSystemWebAPI.Controllers
 {
@@ -20,18 +21,49 @@ namespace KnowledgeTestingSystemWebAPI.Controllers
             _testService = testService;
         }
 
-        // GET: api/Test
+
         [HttpGet]
-        public IEnumerable<TestVM> Get()
+        [Route("api/Test/connections/{id}")]
+        public IHttpActionResult GetWithConnection(int id)
         {
-            IEnumerable<TestDTO> testDTOs = _testService.GetTests();
-            return Mapper.Map<IEnumerable<TestVM>>(testDTOs);
+            TestDTO testDTOs = _testService.GetTestWithConnection(id);
+            return Ok(Mapper.Map<TestVM>(testDTOs));
         }
 
-        // GET: api/Test/5
-        public string Get(int id)
+        [HttpGet]
+        [Route("api/Test")]
+        public IHttpActionResult Get()
         {
-            return "value";
+            IEnumerable<TestDTO> testDTOs = _testService.GetTests();
+            return Ok(Mapper.Map<IEnumerable<TestVM>>(testDTOs));
+        }
+
+
+        [HttpGet]
+        [Route("api/Test/{id}")]
+        public IHttpActionResult Get(int id)
+        {
+            if (id < 0)
+            {
+                return NotFound();
+            }
+
+            TestDTO testDTO;
+            try
+            {
+                testDTO = _testService.GetTest(id);
+            }
+            catch (BILException myExc)
+            {
+
+                return InternalServerError(myExc);
+            }
+            if (testDTO == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(testDTO);
         }
 
         // POST: api/Test

@@ -1,17 +1,18 @@
-﻿using DAL_EF.DTO;
+﻿using BIL.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL_EF.Interfaces
+namespace BIL.Interfaces
 {
     public interface ITestService: IDisposable
     {
         void AddTest(TestDTO testDTO);
         TestDTO GetTest(int? id);
-        IEnumerable<TestDTO> GetTests();
+        ICollection<TestDTO> GetTests();
+        TestDTO GetTestWithConnection(int? id);
         void DeleteTest(int? id);
     }
 }

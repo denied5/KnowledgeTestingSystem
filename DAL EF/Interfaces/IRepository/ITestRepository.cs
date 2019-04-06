@@ -11,6 +11,7 @@ namespace BIL.Interfaces
     {
         ICollection<Test> GetAll();
         Test Get(int id);
+        Test GetWithConnection(int id);
         void Create(Test Test);
         void Update(Test Test);
         void Delete(int id);

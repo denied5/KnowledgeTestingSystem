@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL_EF.DTO
+namespace BIL.Entitys
 {
-    public class AnswerDTO
+    [Serializable]
+    public class Answer
     {
+        [Key]
         public int AnswerId { get; set; }
         public bool IsItWright { get; set; }
-        public string AnswerText { get; set; }
+        [MaxLength(90)]
+        public string  AnswerText { get; set; }
         public int QuestionId { get; set; }
     }
 }
