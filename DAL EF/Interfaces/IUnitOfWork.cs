@@ -1,4 +1,4 @@
-﻿namespace BIL.Interfaces
+﻿namespace DAL.Interfaces
 {
     public interface IUnitOfWork
     {

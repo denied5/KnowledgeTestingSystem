@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using BIL.Entitys;
-using BIL.Interfaces;
-using BIL.DTO;
-using BIL.Infrastructure;
+using DAL.Entitys;
+using DAL.Interfaces;
+using DAL.DTO;
+using DAL.Infrastructure;
 using System.Collections.Generic;
 
-namespace BIL.Services
+namespace DAL.Services
 {
     public class QuestionService : IQuestionService
     {
@@ -54,6 +54,17 @@ namespace BIL.Services
         public ICollection<QuestionDTO> GetQuestions()
         {
             return Mapper.Map<ICollection<QuestionDTO>>(_unitOfWork.Question.GetAll());
+        }
+
+        public void Change(int id, QuestionDTO questionDTO)
+        {
+            Question question = _unitOfWork.Question.Get(id);
+            if (question == null)
+                throw new BILException("we don't have this id", "");
+
+            question.QuestionText = questionDTO.QuestionText;
+            question.TestId = questionDTO.TestId;
+            _unitOfWork.Save();
         }
     }
 }

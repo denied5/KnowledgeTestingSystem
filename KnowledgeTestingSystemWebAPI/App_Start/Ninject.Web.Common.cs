@@ -3,9 +3,9 @@
 
 namespace KnowledgeTestingSystemWebAPI.App_Start
 {
-    using BIL.Interfaces;
-    using BIL.Infrastructure;
-    using BIL.Services;
+    using DAL.Interfaces;
+    using DAL.Infrastructure;
+    using DAL.Services;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
     using Ninject;
     using Ninject.Modules;
@@ -16,7 +16,7 @@ namespace KnowledgeTestingSystemWebAPI.App_Start
     using System.Collections.Generic;
     using System.Web;
     using System.Web.Http;
-    using BIL.AutoMapper;
+    using DAL.AutoMapper;
 
     public static class NinjectWebCommon
     {

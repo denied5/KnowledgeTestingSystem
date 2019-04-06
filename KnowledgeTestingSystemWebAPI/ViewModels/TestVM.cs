@@ -11,5 +11,14 @@ namespace KnowledgeTestingSystemWebAPI.ViewModels
         public string Name { get; set; }
         public int SecToFinish { get; set; }
         public virtual ICollection<QuestionVM> Questions { get; set; }
+
+        public bool isWalid()
+        {
+            if (Name != null && SecToFinish != null)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

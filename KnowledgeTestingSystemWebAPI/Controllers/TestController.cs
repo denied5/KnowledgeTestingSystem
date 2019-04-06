@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using BIL.Interfaces;
-using BIL.DTO;
+using DAL.Interfaces;
+using DAL.DTO;
 using KnowledgeTestingSystemWebAPI.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using BIL.Infrastructure;
+using DAL.Infrastructure;
 
 namespace KnowledgeTestingSystemWebAPI.Controllers
 {
@@ -48,37 +48,73 @@ namespace KnowledgeTestingSystemWebAPI.Controllers
                 return NotFound();
             }
 
-            TestDTO testDTO;
+            TestVM testVM;
             try
             {
-                testDTO = _testService.GetTest(id);
+                testVM = Mapper.Map<TestVM>(_testService.GetTest(id));
             }
             catch (BILException myExc)
             {
 
                 return InternalServerError(myExc);
             }
-            if (testDTO == null)
+            if (testVM == null)
             {
                 return NotFound();
             }
 
-            return Ok(testDTO);
+            return Ok(testVM);
         }
 
-        // POST: api/Test
-        public void Post([FromBody]string value)
+        [HttpPost]
+        [Route("api/Test/")]
+        public IHttpActionResult Post ([FromBody]TestVM testVM)
         {
+            if (testVM == null || !testVM.isWalid())
+            {
+                return BadRequest();
+            }
+
+            _testService.AddTest(Mapper.Map<TestDTO>(testVM));
+            return Ok();
         }
 
-        // PUT: api/Test/5
-        public void Put(int id, [FromBody]string value)
+        [HttpPost]
+        [Route("api/Test/{id}")]
+        public IHttpActionResult Put(int? id, [FromBody]TestVM testVM)
         {
+            if (id == null || testVM == null || !testVM.isWalid())
+            {
+                return BadRequest();
+            }
+            try
+            {
+                _testService.Change(id.GetValueOrDefault(), Mapper.Map<TestDTO>(testVM));
+            }
+            catch (BILException myExc)
+            {
+                return InternalServerError(myExc);
+            }
+            return Ok();
         }
 
-        // DELETE: api/Test/5
-        public void Delete(int id)
+        [HttpDelete]
+        [Route("api/Test/{id}")]
+        public IHttpActionResult Delete(int id)
         {
+            if (id == null)
+            {
+                return BadRequest();
+            }
+            try
+            {
+                _testService.DeleteTest(id);
+            }
+            catch (BILException myExc)
+            {
+                return InternalServerError(myExc);
+            }
+            return Ok();
         }
     }
 }

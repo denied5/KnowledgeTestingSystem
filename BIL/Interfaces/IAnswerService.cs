@@ -1,11 +1,11 @@
-﻿using BIL.DTO;
+﻿using DAL.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BIL.Interfaces
+namespace DAL.Interfaces
 {
     public interface IAnswerService : IDisposable
     {

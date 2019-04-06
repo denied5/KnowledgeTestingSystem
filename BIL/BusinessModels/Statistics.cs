@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BIL.BusinessModels
+namespace DAL.BusinessModels
 {
     public class Statistics
     {

@@ -1,15 +1,15 @@
 ﻿using AutoMapper;
-using BIL.Entitys;
-using BIL.Interfaces;
-using BIL.DTO;
-using BIL.Infrastructure;
+using DAL.Entitys;
+using DAL.Interfaces;
+using DAL.DTO;
+using DAL.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BIL.Services
+namespace DAL.Services
 {
     public class AnswerService : IAnswerService
     {

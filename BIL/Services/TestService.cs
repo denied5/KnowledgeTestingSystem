@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using AutoMapper;
-using BIL.Entitys;
-using BIL.Interfaces;
-using BIL.DTO;
-using BIL.Infrastructure;
+using DAL.Entitys;
+using DAL.Interfaces;
+using DAL.DTO;
+using DAL.Infrastructure;
 
-namespace BIL.Services
+namespace DAL.Services
 {
     public class TestService : ITestService
     {
@@ -58,6 +58,18 @@ namespace BIL.Services
         public TestDTO GetTestWithConnection(int? id)
         {
             return Mapper.Map<TestDTO>(_unitOfWork.Test.GetWithConnection(id.GetValueOrDefault()));
+        }
+
+        public void Change(int id, TestDTO testDTO)
+        {
+            Test test  = _unitOfWork.Test.Get(id);
+            if (test == null)
+                throw new BILException("we don't have this id", "");
+
+            test.Name = testDTO.Name;
+            test.SecToFinish = testDTO.SecToFinish;
+            test.TimeOfCreation = test.TimeOfCreation;
+            _unitOfWork.Save();
         }
     }
 }

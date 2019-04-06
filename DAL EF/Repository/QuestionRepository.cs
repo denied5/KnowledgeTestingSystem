@@ -1,5 +1,5 @@
-﻿using BIL.Entitys;
-using BIL.Interfaces;
+﻿using DAL.Entitys;
+using DAL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BIL.Repository
+namespace DAL.Repository
 {
     public class QuestionRepository: IQuestionRepository
     {

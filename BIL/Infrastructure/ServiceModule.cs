@@ -1,6 +1,6 @@
-﻿using BIL.Interfaces;
-using BIL.UnitOfWorks;
-using BIL.Services;
+﻿using DAL.Interfaces;
+using DAL.UnitOfWorks;
+using DAL.Services;
 using Ninject.Modules;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BIL.Infrastructure
+namespace DAL.Infrastructure
 {
     public class ServiceModule : NinjectModule
     {

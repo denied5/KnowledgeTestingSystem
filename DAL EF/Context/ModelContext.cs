@@ -1,13 +1,17 @@
-namespace BIL
+namespace DAL
 {
-    using BIL.Entitys;
-    using BIL.Interfaces;
+    using DAL.Entitys;
+    using DAL.Interfaces;
     using System;
     using System.Data.Entity;
     using System.Linq;
 
     public class DBContext : DbContext, IContext
     {
+        public DBContext()
+        {
+
+        }
         public DBContext(string connectionString)
             : base(connectionString)
         {

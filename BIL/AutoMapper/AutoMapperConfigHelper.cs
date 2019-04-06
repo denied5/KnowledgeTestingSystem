@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
 using AutoMapper.Configuration;
-using BIL.DTO;
-using BIL.Entitys;
+using DAL.DTO;
+using DAL.Entitys;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BIL.AutoMapper
+namespace DAL.AutoMapper
 {
     public static class MapperInitializer
     {

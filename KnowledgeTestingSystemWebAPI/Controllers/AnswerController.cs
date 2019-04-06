@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using BIL.DTO;
-using BIL.Infrastructure;
-using BIL.Interfaces;
+using DAL.DTO;
+using DAL.Infrastructure;
+using DAL.Interfaces;
 using KnowledgeTestingSystemWebAPI.ViewModels;
 using Ninject.Modules;
 using System;
@@ -39,48 +39,47 @@ namespace KnowledgeTestingSystemWebAPI.Controllers
                 return NotFound();
             }
 
-            AnswerDTO answerDTO;
+            AnswerVM answerVM;
             try
             {
-                answerDTO = _answerService.GetAnswer(id);
+                answerVM = Mapper.Map<AnswerVM>(_answerService.GetAnswer(id));
             }
             catch (BILException myExc)
             {
 
                 return InternalServerError(myExc);
             }
-            if (answerDTO == null)
+            if (answerVM == null)
             {
                 return NotFound();
             }
             
-            return Ok(answerDTO);
+            return Ok(answerVM);
         }
 
         [HttpPost]
         [Route("api/Answer")]
-        public IHttpActionResult Post([FromBody]AnswerDTO answerDTO)
+        public IHttpActionResult Post([FromBody]AnswerVM answerVM)
         {
-            if (answerDTO == null)
+            if (answerVM == null || !answerVM.isWalid())
             {
                 return BadRequest();
             }
-
-            _answerService.AddAnswer(answerDTO);
+            _answerService.AddAnswer(Mapper.Map<AnswerDTO>(answerVM));
             return Ok();
         }
 
         [HttpPost]
         [Route("api/Answer/{id}")]
-        public IHttpActionResult Put(int id, [FromBody]AnswerDTO answerDTO)
+        public IHttpActionResult Put(int? id, [FromBody]AnswerVM answerVM)
         {
-            if (id == null || answerDTO == null )
+            if (id == null || answerVM == null || !answerVM.isWalid() )
             {
                 return BadRequest();
             }
             try
             {
-                _answerService.Change(id, answerDTO);
+                _answerService.Change(id.GetValueOrDefault(), (Mapper.Map<AnswerDTO>(answerVM)));
             }
             catch (BILException myExc)
             {
@@ -89,9 +88,14 @@ namespace KnowledgeTestingSystemWebAPI.Controllers
             return Ok();
         }
 
-        // DELETE: api/Answer/5
+        [HttpDelete]
+        [Route("api/Answer/{id}")]
         public IHttpActionResult Delete(int id)
         {
+            if (id == null)
+            {
+                return BadRequest();
+            }
             try
             {
                 _answerService.DeleteAnswer(id);

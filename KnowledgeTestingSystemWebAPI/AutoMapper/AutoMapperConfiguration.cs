@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BIL.DTO;
+using DAL.DTO;
 using KnowledgeTestingSystemWebAPI.ViewModels;
 using System;
 using System.Collections.Generic;

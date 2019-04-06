@@ -1,12 +1,12 @@
-using BIL.Entitys;
-using BIL.UnitOfWorks;
+using DAL.Entitys;
+using DAL.UnitOfWorks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BIL
+namespace DAL
 {
     class Program
     {
